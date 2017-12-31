@@ -1,0 +1,109 @@
+iframe {
+	border-style:none;
+	background: none;
+}
+
+.barframe, p {
+	width:100%;
+	background-color: #d1d1d1;
+	z-index: 10;
+}
+
+.barframe {
+	top:0cm;
+	height:2.0cm;
+	position: fixed;
+	opacity: 0.9;
+
+}
+
+table, th, td {
+	border-style: ridge;
+	border-width: 2px;
+	border-color: #000000;
+	opacity: 0.8;
+
+}
+
+th, {
+	border-style: groove;
+	opacity: 1.0;
+	border-width: 3px;
+	background-color: #ffffff;
+}
+
+
+.masterframe {
+	height:35cm;
+	position: absolute;
+	top:0.0cm;
+	background: url("https://dreaminvertical.files.wordpress.com/2008/08/squamish-aug-08-109.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+
+.homeHeader {
+	background: none;
+	height:1.0cm;
+	margin: 0px 0px 0px 0px;
+	border-width: 0px;
+	padding: 0px 0px 0px 0px;
+	z-index: 5;
+}
+
+a {
+	display: block;
+	display: inline;
+	color: #000;
+	text-decoration: none;
+}
+
+.navbar, {
+	border-style:solid;
+	background-color: #d1d1d1;
+	color:#d1d1d1;
+	display: inline;
+	position: absolute;
+	top: 1.0cm;
+	height:0.5cm;
+	margin: 0px 0px 0px 0px;
+	border-width: 0px;
+	padding: 8px 20px;
+	z-index: 3;
+}
+
+.navbar a, .homeHeader a {
+	background-color: #d1d1d1;
+	padding: 8px 20px;
+}
+
+a:hover {
+	background-color:#0099ff;
+	color: white;
+}
+
+div {
+	background-color:rgba(209,209,209,0.6);
+	margin-top:1cm;
+	margin-bottom:1cm;
+	width:100%;
+}
+
+head {
+	position: absolute;
+	top:0.0cm;
+}
+
+body {
+	/*position:absolute;*/
+	top:2.0cm;
+}
+/*html {
+	background: url("https://dreaminvertical.files.wordpress.com/2008/08/squamish-aug-08-109.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}*/

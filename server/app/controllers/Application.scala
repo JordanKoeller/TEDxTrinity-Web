@@ -2,7 +2,6 @@ package controllers
 
 import javax.inject._
 
-<<<<<<< HEAD
 import play.api.mvc._
 import play.twirl.api.Html
 import models.TEDEvent
@@ -11,18 +10,10 @@ import models.TEDEvent
 
 @Singleton
 class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
-=======
-import com.example.playscalajs.shared.SharedMessages
-import play.api.mvc._
-
-@Singleton
-class Application @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
->>>>>>> 6b61aaba4af71bde1d85b96eb5757d317dee65a1
 
   def index = Action {
     val calendar = views.html.calendar()
     val sidebar = views.html.sidebar(calendar)
-<<<<<<< HEAD
     val event1 = getEvent
     val l = views.html.homeLicenseStatement()
     val content = new Html(event1.toString() + l.toString())
@@ -52,28 +43,11 @@ class Application @Inject()(cc: ControllerComponents) extends AbstractController
     Ok(views.html.main(sidebar,sponsors))
   }
 
-=======
-    val event1 = views.html.tedEvent()
-    
-    Ok(views.html.main(sidebar,event1))
-  }
-  
-  def testTemplate = Action {
-    Ok(views.html.testTemplate())
-  }
-  
->>>>>>> 6b61aaba4af71bde1d85b96eb5757d317dee65a1
   def aboutTED = Action {
     val aboutTed = views.html.aboutTedContent()
     val calendar = views.html.calendar()
     val sidebar = views.html.sidebar(calendar)
-<<<<<<< HEAD
     Ok(views.html.main(sidebar, aboutTed))
   }
-=======
-    Ok(views.html.main(sidebar,aboutTed))
-  }
-  
->>>>>>> 6b61aaba4af71bde1d85b96eb5757d317dee65a1
 
 }

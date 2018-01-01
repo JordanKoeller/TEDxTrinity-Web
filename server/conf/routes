@@ -4,9 +4,17 @@
 
 # Home page
 GET        /                             controllers.Application.index
+<<<<<<< HEAD
 GET        /AboutTED                     controllers.Application.aboutTED
 GET        /Sponsors                     controllers.Application.sponsors
 # Prefix must match `play.assets.urlPrefix`
 
+=======
+GET		   /templateTest				 controllers.Application.testTemplate
+GET        /AboutTED                     controllers.Application.aboutTED
+
+# Prefix must match `play.assets.urlPrefix`
+#GET        /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+>>>>>>> 6b61aaba4af71bde1d85b96eb5757d317dee65a1
 GET        /assets/*file                 controllers.Assets.at(file)
 GET        /versionedAssets/*file        controllers.Assets.versioned(path="/public", file: Asset)

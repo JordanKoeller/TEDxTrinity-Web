@@ -10,13 +10,15 @@ import models.TEDEvent
 
 @Singleton
 class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
+  
+  var getResponse = "Received Nothing, so far."
 
   def index = Action {
     val calendar = views.html.calendar()
     val sidebar = getSidebar(0)
     val event1 = getEvent
     val l = views.html.homeLicenseStatement()
-    val content = new Html(event1.toString() + l.toString())
+    val content = new Html(event1.toString() + l.toString() + "\n\n "+getResponse)
     Ok(views.html.main(sidebar, content))
   }
   
@@ -34,6 +36,11 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
         "Happy Little Clouds",
         "https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Bob_at_Easel.jpg/220px-Bob_at_Easel.jpg")
     views.html.tedEvent(event)
+  }
+  
+  def submitEventForm(data:String) = Action {
+    getResponse = data 
+    Ok(views.html.sponsors())
   }
   
   private def getSidebar(ind:Int):Html = {

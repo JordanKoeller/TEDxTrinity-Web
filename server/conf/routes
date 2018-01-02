@@ -8,6 +8,7 @@ GET        /Events                       controllers.Application.index
 GET        /AboutTED                     controllers.Application.aboutTED
 GET        /Sponsors                     controllers.Application.sponsors
 GET        /Contact						 controllers.Application.contact
+GET        /subMitData/:data             controllers.Application.submitEventForm(data:String)
 # Prefix must match `play.assets.urlPrefix`
 
 GET        /assets/*file                 controllers.Assets.at(file)

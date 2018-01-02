@@ -11,9 +11,9 @@ import models.TEDEvent
 @Singleton
 class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
-  def index = Action {
+  def index() = Action {
     val calendar = views.html.calendar()
-    val sidebar = views.html.sidebar(calendar)
+    val sidebar = getSidebar(0)
     val event1 = getEvent
     val l = views.html.homeLicenseStatement()
     val content = new Html(event1.toString() + l.toString())
@@ -36,9 +36,15 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
     views.html.tedEvent(event)
   }
   
+  private def getSidebar(ind:Int):Html = {
+    val cal = views.html.calendar()
+    val navOpts = Array(("/Events","Upcoming Events"),("/AboutTED","About TED"),("/Sponsors","Sponsors"),("/Contact","Contact Us"))
+    views.html.sidebar(navOpts,ind,cal)
+  }
+  
   def sponsors = Action {
     val calendar = views.html.calendar()
-    val sidebar = views.html.sidebar(calendar)
+    val sidebar = getSidebar(2)
     val sponsors = views.html.sponsors()
     Ok(views.html.main(sidebar,sponsors))
   }
@@ -46,8 +52,10 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   def aboutTED = Action {
     val aboutTed = views.html.aboutTedContent()
     val calendar = views.html.calendar()
-    val sidebar = views.html.sidebar(calendar)
+    val sidebar = getSidebar(1)
     Ok(views.html.main(sidebar, aboutTed))
   }
+  
+ 
 
 }

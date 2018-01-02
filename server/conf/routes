@@ -4,8 +4,10 @@
 
 # Home page
 GET        /                             controllers.Application.index
+GET        /Events                       controllers.Application.index
 GET        /AboutTED                     controllers.Application.aboutTED
 GET        /Sponsors                     controllers.Application.sponsors
+GET        /Contact						 controllers.Application.contact
 # Prefix must match `play.assets.urlPrefix`
 
 GET        /assets/*file                 controllers.Assets.at(file)

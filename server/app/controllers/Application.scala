@@ -11,7 +11,7 @@ import models.TEDEvent
 @Singleton
 class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
-  def index() = Action {
+  def index = Action {
     val calendar = views.html.calendar()
     val sidebar = getSidebar(0)
     val event1 = getEvent
@@ -54,6 +54,13 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
     val calendar = views.html.calendar()
     val sidebar = getSidebar(1)
     Ok(views.html.main(sidebar, aboutTed))
+  }
+  
+  def contact = Action {
+    val content = views.html.contact()
+    val calendar = views.html.calendar()
+    val sidebar = getSidebar(3)
+    Ok(views.html.main(sidebar, content))    
   }
   
  

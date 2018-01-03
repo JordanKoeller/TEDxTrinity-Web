@@ -45,8 +45,8 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   //  }
 
   def submitEventForm = Action { request =>
-    val jsonString = request.body.asFormUrlEncoded.get.keys.head
-    getResponse = jsonString
+    val jsonString = request//.body.asFormUrlEncoded.get.keys.head
+    getResponse = jsonString.toString()
 //    val fields = jsonString.split("```")
 //    val fieldsMap = fields.map{elem =>
 //      val tups = elem.split(":")

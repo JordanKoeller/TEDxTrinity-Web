@@ -11,14 +11,14 @@ import models.TEDEvent
 @Singleton
 class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
-  var getResponse = "Received Nothing, so far."
+  var currEvent:TEDEvent = null
 
   def index = Action {
     val calendar = views.html.calendar()
     val sidebar = getSidebar(0)
     val event1 = getEvent
     val l = views.html.homeLicenseStatement()
-    val content = new Html(event1.toString() + l.toString() + "\n\n " + getResponse)
+    val content = new Html(event1.toString() + l.toString())
     Ok(views.html.main(sidebar, content))
   }
 
@@ -36,7 +36,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
       200,
       "Happy Little Clouds",
       "https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Bob_at_Easel.jpg/220px-Bob_at_Easel.jpg")
-    views.html.tedEvent(event)
+    if (currEvent != null) views.html.tedEvent(currEvent) else views.html.tedEvent(event)
   }
 
   //  def submitEventForm(data:String) = Action {
@@ -44,9 +44,20 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   //    Ok(views.html.sponsors())
   //  }
 
-  def submitEventForm(auth:String,title:String,subtitle:String,speaker:String,desc:String,venue:String,date:String,time:String,seats:String,link:String) = Action {
-    getResponse = title
-    Ok(views.html.sponsors())
+  def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
+    if (auth == "fi2933fi8as9lss3982jvb398skil") {
+       val split = date.split("-")
+       val day = split(1).toInt
+       val month = split(0).toInt
+       val yr = split(2).toInt
+       val timeSplit = time.split(":")
+       val hr = timeSplit(0).toInt
+       val min = timeSplit(1).toInt
+       currEvent = TEDEvent(title,subtitle,day,month,yr,hr,min,speaker,venue,seats.toInt,desc,link)
+       Ok
+    } else {
+      Ok
+    }
   }
 
   private def getSidebar(ind: Int): Html = {

@@ -47,9 +47,9 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
     if (auth == "fi2933fi8as9lss3982jvb398skil") {
        val split = date.split("-")
-       val day = split(1).toInt
-       val month = split(0).toInt
-       val yr = split(2).toInt
+       val day = split(2).toInt
+       val month = split(1).toInt
+       val yr = split(0).toInt
        val timeSplit = time.split(":")
        val hr = timeSplit(0).toInt
        val min = timeSplit(1).toInt

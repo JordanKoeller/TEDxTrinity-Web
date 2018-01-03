@@ -54,7 +54,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 //      (name,t)
 //    }.toMap
 //    getResponse = fieldsMap.mkString(" ??? ")
-    Ok
+    Ok(views.html.sponsors())
   }
 
   private def getSidebar(ind: Int): Html = {

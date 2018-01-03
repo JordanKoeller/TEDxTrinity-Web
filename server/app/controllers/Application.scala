@@ -44,16 +44,8 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   //    Ok(views.html.sponsors())
   //  }
 
-  def submitEventForm(request:String) = Action {
-    getResponse = request
-//    val fields = request.split("```")
-//    val fieldsMap = fields.map{elem =>
-//      val tups = elem.split(":")
-//      val name = tups.head
-//      val t = tups.tail.mkString(":")
-//      (name,t)
-//    }.toMap
-//    getResponse = fieldsMap.mkString(" ??? ")
+  def submitEventForm(auth:String,title:String,subtitle:String,desc:String,venue:String,date:String,time:String,seats:Int,link:String) = Action {
+    getResponse = title
     Ok(views.html.sponsors())
   }
 

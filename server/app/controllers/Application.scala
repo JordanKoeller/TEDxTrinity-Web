@@ -44,16 +44,16 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   //    Ok(views.html.sponsors())
   //  }
 
-  def submitEventForm = Action { request =>
-    val jsonString = request//.body.asFormUrlEncoded.get.keys.head
-    getResponse = jsonString.toString()
-//    val fields = jsonString.split("```")
-//    val fieldsMap = fields.map{elem =>
-//      val tups = elem.split(":")
-//      (tups(0),tups(1))
-//    }.toMap
-//    getResponse = fieldsMap.mkString(" ??? ")
-    Ok(views.html.sponsors())
+  def submitEventForm(request:String) = Action {
+    val fields = request.split("```")
+    val fieldsMap = fields.map{elem =>
+      val tups = elem.split(":")
+      val name = tups.head
+      val t = tups.tail.mkString(":")
+      (name,t)
+    }.toMap
+    getResponse = fieldsMap.mkString(" ??? ")
+    Ok
   }
 
   private def getSidebar(ind: Int): Html = {

@@ -44,7 +44,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   //    Ok(views.html.sponsors())
   //  }
 
-  def submitEventForm(auth:String,title:String,subtitle:String,desc:String,venue:String,date:String,time:String,seats:Int,link:String) = Action {
+  def submitEventForm(auth:String,title:String,subtitle:String,desc:String,venue:String,date:String,time:String,seats:String,link:String) = Action {
     getResponse = title
     Ok(views.html.sponsors())
   }

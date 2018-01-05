@@ -5,6 +5,7 @@ import javax.inject._
 import play.api.mvc._
 import play.twirl.api.Html
 import models.TEDEvent
+import models.TEDEventList
 
 //import play.twirl.api.Html
 
@@ -16,9 +17,11 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   def index = Action {
     val calendar = views.html.calendar()
     val sidebar = getSidebar(0)
+    val events = TEDEventList.list
+    val htmlList = events.map(i => views.html.tedEvent(i))
     val event1 = getEvent
     val l = views.html.homeLicenseStatement()
-    val content = new Html(event1.toString() + l.toString())
+    val content = new Html(htmlList.mkString("") + l.toString())
     Ok(views.html.main(sidebar, content))
   }
 
@@ -53,7 +56,8 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
        val timeSplit = time.split(":")
        val hr = timeSplit(0).toInt
        val min = timeSplit(1).toInt
-       currEvent = TEDEvent(title,subtitle,day,month,yr,hr,min,speaker,venue,seats.toInt,desc,link)
+       val event = TEDEvent(title,subtitle,day,month,yr,hr,min,speaker,venue,seats.toInt,desc,link)
+       TEDEventList.addEvent(event)
        Ok
     } else {
       Ok

@@ -19,33 +19,10 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
     val sidebar = getSidebar(0)
     val events = TEDEventList.list
     val htmlList = events.map(i => views.html.tedEvent(i))
-    val event1 = getEvent
     val l = views.html.homeLicenseStatement()
     val content = new Html(htmlList.mkString("") + l.toString())
     Ok(views.html.main(sidebar, content))
   }
-
-  private def getEvent: Html = {
-    val event = TEDEvent(
-      "This is a TEDxTrinity Event",
-      "Should be super fun!",
-      17,
-      2,
-      2018,
-      17,
-      30,
-      "Bob Ross",
-      "Laurie Auditorium",
-      200,
-      "Happy Little Clouds",
-      "https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Bob_at_Easel.jpg/220px-Bob_at_Easel.jpg")
-    if (currEvent != null) views.html.tedEvent(currEvent) else views.html.tedEvent(event)
-  }
-
-  //  def submitEventForm(data:String) = Action {
-  //    getResponse = data
-  //    Ok(views.html.sponsors())
-  //  }
 
   def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
     if (auth == "fi2933fi8as9lss3982jvb398skil") {

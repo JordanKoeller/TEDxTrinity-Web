@@ -34,7 +34,7 @@ class TEDEvent(val title:String,
     val hrFormatted = hr % 12
     val amPm = if (hr >= 12) "PM" else "AM"
     val minString = if (min < 10) "0"+min else min
-    val hrString = if (hrFormatted == 0) "12" else hr.toString()
+    val hrString = if (hrFormatted == 0) "12" else hrFormatted
     s"$hrString:$minString $amPm"
   }
 

@@ -33,7 +33,8 @@ class TEDEvent(val title:String,
     val min = date.getMinute
     val hrFormatted = hr % 12
     val amPm = if (hr >= 12) "PM" else "AM"
-    s"$hrFormatted:$min $amPm"
+    val minString = if (min < 10) "0"+min else min
+    s"$hrFormatted:$minString $amPm"
   }
 
   def dateNumberString(delimiter:String = "/"):String = {

@@ -1,18 +1,37 @@
 package controllers
 
-import javax.inject._
+import java.sql.Date
+import java.sql.Time
+import java.time.ZoneId
+import java.time.temporal.ChronoField
 
-import play.api.mvc._
-import play.twirl.api.Html
+import scala.concurrent.ExecutionContext
+
+import javax.inject._
 import models.TEDEvent
 import models.TEDEventList
+import models.Tables.EventDescriptions
+import models.Tables.EventDescriptionsRow
+import models.Tables.Events
+import models.Tables.EventsRow
+import play.api.db.slick.DatabaseConfigProvider
+import play.api.db.slick.HasDatabaseConfigProvider
+import play.api.mvc._
+import play.twirl.api.Html
+import slick.jdbc.JdbcProfile
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
 
 //import play.twirl.api.Html
 
 @Singleton
-class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
-
-  var currEvent:TEDEvent = null
+class Application @Inject() (
+  protected val dbConfigProvider: DatabaseConfigProvider,
+  cc: ControllerComponents)(implicit ec: ExecutionContext)
+  extends AbstractController(cc) with HasDatabaseConfigProvider[JdbcProfile] {
+  import profile.api._
+  
+  updateModel()
 
   def index = Action {
     val calendar = views.html.calendar()
@@ -24,22 +43,6 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
     Ok(views.html.main(sidebar, content))
   }
 
-  def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
-    if (auth == "fi2933fi8as9lss3982jvb398skil") {
-       val split = date.split("-")
-       val day = split(2).toInt
-       val month = split(1).toInt
-       val yr = split(0).toInt
-       val timeSplit = time.split(":")
-       val hr = timeSplit(0).toInt
-       val min = timeSplit(1).toInt
-       val event = TEDEvent(title,subtitle,day,month,yr,hr,min,speaker,venue,seats.toInt,desc,link)
-       TEDEventList.addEvent(event)
-       Ok
-    } else {
-      Ok
-    }
-  }
 
   private def getSidebar(ind: Int): Html = {
     val cal = views.html.calendar()
@@ -66,6 +69,59 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
     val calendar = views.html.calendar()
     val sidebar = getSidebar(3)
     Ok(views.html.main(sidebar, content))
+  }
+  
+  
+  
+  def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
+    if (auth == "fi2933fi8as9lss3982jvb398skil") {
+      val split = date.split("-")
+      val day = split(2).toInt
+      val month = split(1).toInt
+      val yr = split(0).toInt
+      val timeSplit = time.split(":")
+      val hr = timeSplit(0).toInt
+      val min = timeSplit(1).toInt
+      val event = TEDEvent(title, subtitle, day, month, yr, hr, min, speaker, venue, seats.toInt, desc, link)
+      addEvent(event)
+      Ok
+    } else {
+      Ok
+    }
+  }
+
+  private def addEvent(event: TEDEvent) = {
+    val date = event.date.atZone(ZoneId.of("America/Chicago"))
+    val epochsec = date.getLong(ChronoField.INSTANT_SECONDS) * 1000
+    val sqldate = new Date(epochsec)
+    val sqltime = new Time(epochsec)
+    val eventRow = EventsRow(0, sqldate, sqltime)
+    val eventID = db.run(Events returning Events.map(_.eventId) += eventRow)
+    val finalQuery = eventID.map { id =>
+      val eventDesc = EventDescriptionsRow(
+        id.toInt,
+        event.title,
+        event.subtitle,
+        event.speaker,
+        event.description,
+        event.venue,
+        sqldate,
+        sqltime,
+        event.maxSeats,
+        0,
+        event.imgURL)
+      db.run(EventDescriptions += eventDesc)
+    }
+    finalQuery.map{i =>
+      updateModel()
+  }
+}
+  
+  private def updateModel() = {
+    val events = db.run(EventDescriptions.sortBy(_.eventDate).take(100).result)
+    events.map{seq => 
+      TEDEventList.updateList(seq)
+    }
   }
 
 }

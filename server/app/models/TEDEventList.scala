@@ -3,6 +3,7 @@ package models
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.concurrent.atomic.AtomicReference
+import java.time.ZoneOffset
 
 object TEDEventList {
   private val buf = new AtomicReference(Array[TEDEvent]())
@@ -27,7 +28,11 @@ object TEDEventList {
           eventRow.description,
           eventRow.mediaLink.getOrElse(""))
     }
-    buf.set(eventList.toArray)
+    val sortedList = eventList.sortBy{event =>
+      val offset = ZoneOffset.UTC
+      event.date.toEpochSecond(offset)
+    }
+    buf.set(sortedList.toArray)
   }
   
   def list:List[TEDEvent] = {

@@ -118,7 +118,7 @@ class Application @Inject() (
 }
   
   private def updateModel() = {
-    val events = db.run(EventDescriptions.sortBy(_.eventDate).take(100).result)
+    val events = db.run(EventDescriptions.take(100).result)
     events.map{seq => 
       TEDEventList.updateList(seq)
     }

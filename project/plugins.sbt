@@ -4,6 +4,8 @@ logLevel := Level.Warn
 // Resolvers
 resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases/"
 
+libraryDependencies += "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
+
 // Sbt plugins
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.6")
 

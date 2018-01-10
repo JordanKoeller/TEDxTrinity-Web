@@ -1741,7 +1741,7 @@
 
 		.image img {
 			display: block;
-			width: 100%;
+			width: 60%;
 		}
 
 		.image.fit {
@@ -1751,7 +1751,7 @@
 
 		.image.featured {
 			display: block;
-			width: 100%;
+			width: 60%;
 			margin: 0 0 2em 0;
 		}
 

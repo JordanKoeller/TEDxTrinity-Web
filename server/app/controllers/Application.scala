@@ -100,16 +100,16 @@ class Application @Inject() (
     val finalQuery = eventID.map { id =>
       val eventDesc = EventDescriptionsRow(
         id.toInt,
-        event.title,
-        event.subtitle,
-        event.speaker,
-        event.description,
-        event.venue,
+        clean(event.title),
+        if (event.subtitle.isDefined) Some(clean(event.subtitle.get)) else None,
+        clean(event.speaker),
+        clean(event.description),
+        clean(event.venue),
         sqldate,
         sqltime,
         event.maxSeats,
         0,
-        event.imgURL)
+        if (event.imgURL.isDefined) Some(clean(event.imgURL.get)) else None)
       db.run(EventDescriptions += eventDesc)
     }
     finalQuery.map{i =>
@@ -122,6 +122,15 @@ class Application @Inject() (
     events.map{seq => 
       TEDEventList.updateList(seq)
     }
+  }
+  
+  private def clean(str:String):String = {
+    val specials = Array(("%2F" -> "/"),("%3A" -> ":"),( "%2E" -> "."))
+    var s = str
+    specials.foreach{subst =>
+      s = s.replaceAll(subst._1, subst._2)
+    }
+    s
   }
 
 }

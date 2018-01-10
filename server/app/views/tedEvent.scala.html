@@ -35,8 +35,8 @@
 									<li><a href="#" class="icon fa-comment">@(model.numAttendants)/@(model.maxSeats)</a></li>
 								</ul> -->
 							</div>
-							@if(true) {
-							  <a href="#" class="image featured"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Bob_at_Easel.jpg/220px-Bob_at_Easel.jpg" alt="" /></a>
+							@if(model.imgURL.isDefined) {
+							  <a href="#" class="image featured"><img src="@model.imgURL.get" alt="" /></a>
 							}
 							<p>
 								<strong>Speaker: </strong> @model.speaker

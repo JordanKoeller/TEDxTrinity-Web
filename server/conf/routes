@@ -10,6 +10,8 @@ GET        /Sponsors                     controllers.Application.sponsors
 GET        /Contact						 controllers.Application.contact
 GET       /fie93krubvla92s94dkwjf9dk/:auth/:title/:subtitle/:speaker/:desc/:venue/:date/:time/:seats/:link             controllers.Application.submitEventForm(auth:String,title:String,subtitle:String,speaker:String,desc:String,venue:String,date:String,time:String,seats:String,link:String)
 #POST       /fie93krubvla92s94dkwjf9dk    controllers.Application.submitEventForm
+
+GET        /Test                         controllers.Test.index
 # Prefix must match `play.assets.urlPrefix`
 
 GET        /assets/*file                 controllers.Assets.at(file)

@@ -1,72 +1,63 @@
 @* sidebar Template File *@
-
 @(navOpts:Array[(String,String)],currInd:Int,calendar: Html)
 <!-- Sidebar -->
-			<div id="sidebar">
-				<!-- Logo -->
-					<h1 id="logo"><a href="/"><img src="@routes.Assets.versioned("images/TEDxTrinityLogo.png")" alt="TEDxTrinity"/></a></h1>
-
-				<!-- Search -->
-					<section class="box search">
-						<form method="post" action="#">
-							<input type="text" class="text" name="search" placeholder="Search" />
-						</form>
-					</section>
-					
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-						@for(ind <- 0 until navOpts.length) {
-						  @if(ind == currInd) {<li class="current"><a href="@navOpts(ind)._1">@navOpts(ind)._2</a></li>}
-						  @if(ind != currInd) {<li><a href="@navOpts(ind)._1">@navOpts(ind)._2</a></li>}
-						}
-						</ul>
-					</nav>
-
-
-					
-				@calendar
-
-				<!-- Recent Posts -->
-<!-- 					<section class="box recent-posts">
-						<header>
-							<h2>Recent Posts</h2>
-						</header>
-						<ul>
-							<li><a href="#">Lorem ipsum dolor</a></li>
-							<li><a href="#">Feugiat nisl aliquam</a></li>
-							<li><a href="#">Sed dolore magna</a></li>
-							<li><a href="#">Malesuada commodo</a></li>
-							<li><a href="#">Ipsum metus nullam</a></li>
-						</ul>
-					</section> -->
-
-				<!-- Recent Comments -->
-<!-- 					<section class="box recent-comments">
-						<header>
-							<h2>Recent Comments</h2>
-						</header>
-						<ul>
-							<li>case on <a href="#">Lorem ipsum dolor</a></li>
-							<li>molly on <a href="#">Sed dolore magna</a></li>
-							<li>case on <a href="#">Sed dolore magna</a></li>
-						</ul>
-					</section> -->
-
-				<!-- Text -->
-					<section class="box text-style1">
-						<div class="inner">
-							<p>
-								This independent TEDx event is operated under license from TED.
-								<br/>
-								<a href="https://www.ted.com/about/programs-initiatives/tedx-program">TEDx Program</a>
-							</p>
-						</div>
-					</section>
-
-				<!-- Copyright -->
-					<ul id="copyright">
-						<li>Website design template provided by <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-
-			</div>
+<div id="sidebar">
+	<!-- Logo -->
+	<h1 id="logo"><a href="/"><img src="@routes.Assets.versioned("images/TEDxTrinityLogo.png")" alt="TEDxTrinity"/></a></h1>
+	<!-- Search -->
+	<section class="box search">
+		<form method="post" action="#">
+			<input type="text" class="text" name="search" placeholder="Search" />
+		</form>
+	</section>
+	
+	<!-- Nav -->
+	<nav id="nav">
+		<ul>
+			@for(ind <- 0 until navOpts.length) {
+			@if(ind == currInd) {<li class="current"><a href="@navOpts(ind)._1">@navOpts(ind)._2</a></li>}
+			@if(ind != currInd) {<li><a href="@navOpts(ind)._1">@navOpts(ind)._2</a></li>}
+			}
+		</ul>
+	</nav>
+	
+	@calendar
+	<!-- Recent Posts -->
+	<!-- 					<section class="box recent-posts">
+			<header>
+					<h2>Recent Posts</h2>
+			</header>
+			<ul>
+					<li><a href="#">Lorem ipsum dolor</a></li>
+					<li><a href="#">Feugiat nisl aliquam</a></li>
+					<li><a href="#">Sed dolore magna</a></li>
+					<li><a href="#">Malesuada commodo</a></li>
+					<li><a href="#">Ipsum metus nullam</a></li>
+			</ul>
+	</section> -->
+	<!-- Recent Comments -->
+	<!-- 					<section class="box recent-comments">
+			<header>
+					<h2>Recent Comments</h2>
+			</header>
+			<ul>
+					<li>case on <a href="#">Lorem ipsum dolor</a></li>
+					<li>molly on <a href="#">Sed dolore magna</a></li>
+					<li>case on <a href="#">Sed dolore magna</a></li>
+			</ul>
+	</section> -->
+	<!-- Text -->
+	<section class="box text-style1">
+		<div class="inner">
+			<p>
+				This independent TEDx event is operated under license from TED.
+				<br/>
+				<a href="https://www.ted.com/about/programs-initiatives/tedx-program">TEDx Program</a>
+			</p>
+		</div>
+	</section>
+	<!-- Copyright -->
+	<ul id="copyright">
+		<li>Website design template provided by <a href="http://html5up.net">HTML5 UP</a></li>
+	</ul>
+</div>

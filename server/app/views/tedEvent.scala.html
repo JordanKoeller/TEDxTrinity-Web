@@ -19,7 +19,19 @@
 							Oh, and if you don't need a date for a particular page or post you can simply delete
 							the entire "date" element.
 					-->
-					<span class="date"><span class="month">@model.monthPrefix<span>@model.monthSuffix</span></span> <span class="day">@model.date.getDayOfMonth</span><span class="year">, @model.date.getYear</span></span>
+					<span class="date">
+						<span class="month">@model.monthPrefix
+							<span>
+								@model.monthSuffix
+							</span>
+						</span>
+						<span class="day">
+							@model.date.getDayOfMonth
+						</span>
+						<span class="year">
+							, @model.date.getYear
+						</span>
+					</span>
 					<ul class="stats">
 						<li>@model.time</li>
 					</ul>

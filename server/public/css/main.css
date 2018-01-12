@@ -1794,8 +1794,8 @@
 		-webkit-transition: background-color .25s ease-in-out, color .25s ease-in-out;
 		-ms-transition: background-color .25s ease-in-out, color .25s ease-in-out;
 		transition: background-color .25s ease-in-out, color .25s ease-in-out;
-		text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.5);
-	}
+/*		text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.5);
+*/	}
 
 		input[type="button"]:disabled, input[type="button"].disabled,
 		input[type="submit"]:disabled,
@@ -2096,7 +2096,7 @@
 /* Nav */
 
 	#nav > ul > li > ul {
-		display: none;
+		display:inline;
 	}
 
 	#nav ul {
@@ -2619,12 +2619,12 @@
 		/* Basic */
 
 			body {
-				min-width: 1000px;
-				font-size: 11pt;
+				min-width: 737px;
+				font-size: 14pt;
 			}
 
 			input, textarea, select {
-				font-size: 11pt;
+				font-size: 14pt;
 			}
 
 		/* Box */
@@ -2635,7 +2635,7 @@
 			}
 
 			.box.post header {
-				padding: 1.5em 0 0 0;
+				padding: 2.75em 0 0 0;
 				margin: 0 0 3em 0;
 			}
 
@@ -2687,11 +2687,11 @@
 
 			#content {
 				padding: 2em 3em 6em 3em;
-				margin-left: 16em;
+				margin-left: 14em;
 			}
 
 			#sidebar {
-				width: 240px;
+				width: 259px;
 			}
 
 	}
@@ -3000,7 +3000,7 @@
 }
 
 .panel {
-    padding: 0 18px;
+    padding: 0px 18px;
     background-color: white;
     max-height: 0;
     overflow: hidden;

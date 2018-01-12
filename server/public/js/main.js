@@ -51,9 +51,11 @@
 			    this.classList.toggle("active");
 			    var panel = this.nextElementSibling;
 			    if (panel.style.maxHeight){
-			      panel.style.maxHeight = null;
+	    		  panel.style.maxHeight = null;
+	      		  panel.style.padding = "0px 18px";
 			    } else {
 			      panel.style.maxHeight = panel.scrollHeight + "px";
+			      panel.style.padding = "18px 18px";
 			    }
 			  });
 			} 

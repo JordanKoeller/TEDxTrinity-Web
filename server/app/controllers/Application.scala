@@ -23,6 +23,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
 //import play.twirl.api.Html
+import util.Article
 
 @Singleton
 class Application @Inject() (
@@ -33,14 +34,14 @@ class Application @Inject() (
   
   updateModel()
 
-  def index = Action {
+  def index = Action { 
     val calendar = views.html.calendar()
     val sidebar = getSidebar(0)
     val events = TEDEventList.list
     val htmlList = events.map(i => views.html.tedEvent(i))
     val l = views.html.homeLicenseStatement()
     val content = new Html(htmlList.mkString("") + l.toString())
-    Ok(views.html.main(sidebar, content))
+    Ok(views.html.main("", content))
   }
 
 
@@ -54,21 +55,21 @@ class Application @Inject() (
     val calendar = views.html.calendar()
     val sidebar = getSidebar(2)
     val sponsors = views.html.sponsors()
-    Ok(views.html.main(sidebar, sponsors))
+    Ok(views.html.main("", sponsors))
   }
 
   def aboutTED = Action {
-    val aboutTed = views.html.aboutTedContent()
-    val calendar = views.html.calendar()
+    // val aboutTed = views.html.aboutTedContent()
+    val aboutTed = viewStyles.html.style2(util.aboutTedText.content)
     val sidebar = getSidebar(1)
-    Ok(views.html.main(sidebar, aboutTed))
+    Ok(views.html.main("About TEDx", aboutTed))
   }
 
   def contact = Action {
     val content = views.html.contact()
     val calendar = views.html.calendar()
     val sidebar = getSidebar(3)
-    Ok(views.html.main(sidebar, content))
+    Ok(views.html.main( "", content))
   }
   
   

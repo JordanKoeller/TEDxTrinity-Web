@@ -39,7 +39,7 @@ class Test @Inject() (
     val htmlList = events.map(i => views.html.tedEvent(i))
     val l = views.html.homeLicenseStatement()
     val content = new Html(htmlList.mkString("") + l.toString())
-    Ok(views.html.main(sidebar, content))
+    Ok(views.html.main("", content))
   }
 
 

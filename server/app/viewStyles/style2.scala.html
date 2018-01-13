@@ -1,0 +1,18 @@
+@import util.Article
+@(articles:List[Article])
+<section class="wrapper style2 container special-alt">
+	<div class="row 50%">
+		@for(article <- articles) {
+		<div class="content">
+			<header>
+				<h2>@article.title</h2>
+				@if(article.subtitle.isDefined) {
+				<h3>@article.subtitle.get</h3>
+				}
+			</header>
+			<p>@article.body</p>
+
+		</div>
+		}
+	</div>
+</section>

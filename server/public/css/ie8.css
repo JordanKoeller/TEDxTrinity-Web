@@ -1,64 +1,37 @@
 /*
-	Striped by HTML5 UP
+	Twenty by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form select,
-form textarea {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");}
+/* Section/Article */
 
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-button,
-.button {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");}
-
-.pagination .pages a {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");
-}
-
-.box.calendar td a, .box.calendar td span {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");
-}
-
-.box.text-style1 .inner {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");
-}
-
-#nav li a {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");
-}
-
-.box.post .info {
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");
-}
-
-	.box.post .info .stats li a {
-		position: relative;
-		box-shadow: none !important;
-		-ms-behavior: url("assets/js/ie/PIE.htc");
+	section > .last-child, section.last-child,
+	article > .last-child,
+	article.last-child {
+		margin-bottom: 0;
 	}
 
-#logo {
-	position: relative;
-	box-shadow: none !important;
-	-ms-behavior: url("assets/js/ie/PIE.htc");
-}
+/* Banner */
+
+	#banner {
+		background-image: url("../../images/banner.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: auto;
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+	}
+
+		#banner .inner {
+			background: #341b2b;
+		}
+
+/* CTA */
+
+	#cta {
+		background-image: url("../../images/banner.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: auto;
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+	}

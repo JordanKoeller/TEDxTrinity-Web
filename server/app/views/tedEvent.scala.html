@@ -4,9 +4,9 @@
 <article class="box post post-excerpt">
 	<button class="accordion">
 	<header>
-		<h2>@model.title</h2>
+		<h3>@model.title</h3>
 			@if(model.subtitle.isDefined) {
-			<p>@model.subtitle.get</p>
+			<h2>@model.subtitle.get</h2>
 			}
 		</header>
 		</button>
@@ -42,6 +42,7 @@
 						<li><a href="#" class="icon fa-comment">@(model.numAttendants)/@(model.maxSeats)</a></li>
 					</ul> -->
 				</div>
+			</div>
 				@if(model.imgURL.isDefined) {
 				<a href="#" class="image featured"><img src="@model.imgURL.get" alt="" /></a>
 				}
@@ -54,5 +55,16 @@
 				<p>
 					@model.description
 				</p>
-			</div>
 		</article>
+
+
+
+
+
+
+
+
+
+
+
+

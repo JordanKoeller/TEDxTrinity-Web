@@ -1,0 +1,8 @@
+@import models.TEDEvent
+@(model:TEDEvent)
+<header class="special container">
+	<h3>@model.title</h3>
+	@if(model.subtitle.isDefined) {
+	<h2>@model.subtitle.get</h2>
+	}
+</header>

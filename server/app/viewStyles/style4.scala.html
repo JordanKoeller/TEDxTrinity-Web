@@ -3,9 +3,9 @@
 <!-- One -->
 <section class="wrapper style4 container">
 	<div class="row 150%">
+			@if(sidebars.isDefined) {
 		<div class="4u 12u(narrower)">
 			<!-- Sidebar -->
-			@if(sidebars.isDefined) {
 			<div class="sidebar">
 				@for(article <- sidebars.get) {
 				<section>
@@ -16,18 +16,12 @@
 						}
 					</header>
 					<p>@article.body</p>
-					<footer>
-						<ul class="buttons">
-							<li><a href="#" class="button small">Learn More</a></li>
-						</ul>
-					</footer>
 				</section>
 				}
 			</div>
 		</div>
 		}
 		@for(article <- articles) {
-		<div class="8u 12u(narrower) important(narrower)">
 			<!-- Content -->
 			<div class="content">
 				<section>
@@ -41,7 +35,6 @@
 					<p>@article.body</p>
 				</section>
 			</div>
-		</div>
 		}
 	</div>
 </section>

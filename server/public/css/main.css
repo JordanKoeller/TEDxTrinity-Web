@@ -3208,3 +3208,35 @@
 			}
 
 	}
+
+
+/* Additional CSS added by JKoeller */
+
+/* Accordion button styling */
+
+.accordion {
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.4s;
+
+
+}
+
+.active, .accordion:hover {
+    background-color: #555;
+    opacity: 0.5;
+}
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+    /*transition: max-height 0.5s ease-out;*/
+    opacity: 0.0;
+}
+
+.activePanel {
+	opacity: 1.0;
+	transition: opacity 0.5s ease-in, max-height 0.5s ease-out;
+	/*transition: max-height 0.5s ease-out;*/
+}

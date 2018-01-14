@@ -21,6 +21,7 @@ import play.twirl.api.Html
 import slick.jdbc.JdbcProfile
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+import util._
 
 //import play.twirl.api.Html
 
@@ -30,16 +31,22 @@ class Test @Inject() (
   cc: ControllerComponents)(implicit ec: ExecutionContext)
   extends AbstractController(cc) with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
-  
 
   def index = Action {
-    val calendar = views.html.calendar()
-    val sidebar = getSidebar(0)
     val events = generateEvents
-    val htmlList = events.map(i => views.html.tedEvent(i))
-    val l = views.html.homeLicenseStatement()
-    val content = new Html(htmlList.mkString("") + l.toString())
-    Ok(views.html.main("", content))
+    val htmlList = formatEvents(generateEvents)
+    Ok(views.html.main("Events",htmlList))
+  }
+
+  def formatEvents(events:List[TEDEvent]):Html = {
+    val articleList = events.map{article =>
+      val title = views.html.tedTitle(article)
+      val body = views.html.tedEventBody(article)
+      val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
+      val prettyBody = viewStyles.html.style4(Article("",body) ::Nil)
+      viewStyles.html.accordion(prettyTitle,prettyBody).toString()
+    }
+    new Html(articleList.mkString(""))
   }
 
 

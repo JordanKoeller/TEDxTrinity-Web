@@ -47,7 +47,7 @@ class Application @Inject() (
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
       val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
-      val prettyBody = viewStyles.html.style4(Article("",body) ::Nil)
+      val prettyBody = viewStyles.html.style4(Article("",body,image = article.imgURL))
       viewStyles.html.accordion(prettyTitle,prettyBody).toString()
     }
     new Html(articleList.mkString(""))
@@ -64,7 +64,9 @@ class Application @Inject() (
     val calendar = views.html.calendar()
     val sidebar = getSidebar(2)
     val sponsors = views.html.sponsors()
-    Ok(views.html.main("", sponsors))
+    val sponsorsIcon = "TULogo.png"
+    val prettySponsors = viewStyles.html.style1(Article("<a href=\"https://new.trinity.edu\">Trinity University</a>","",image=Some(sponsorsIcon)))
+    Ok(views.html.main("Sponsors", prettySponsors))
   }
 
   def aboutTED = Action {
@@ -75,10 +77,11 @@ class Application @Inject() (
   }
 
   def contact = Action {
-    val content = views.html.contact()
-    val calendar = views.html.calendar()
-    val sidebar = getSidebar(3)
-    Ok(views.html.main( "", content))
+    val people = peopleList
+    val icons = people.map(p => new Html(p.picLink))
+    val peopleArticles = people.map(p => Article(p.name,p.description,Some(p.email + " | " + p.classDesc),Some(p.picLink)))
+    val htmlList = peopleArticles.map(i => viewStyles.html.style1(i))
+    Ok(views.html.main("Our Team",htmlList.mkString(",")))
   }
   
   

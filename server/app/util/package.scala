@@ -7,7 +7,17 @@ package object util {
 		if (arg.isDefined) Some(new Html(arg.get)) else None
 	}
 
-	case class Article(title:Html,body:Html,subtitle:Option[Html]=None)
+	implicit def articleToList(arg:Article):List[Article] = arg::Nil
+	implicit def htmlToList(arg:Html):List[Html] = arg::Nil
+	implicit def stringToList(arg:String):List[String] = arg::Nil
+
+	case class Article(title:Html,body:Html,subtitle:Option[Html]=None,image:Option[Html] = None)
+
+
+	case class PersonDescription(picLink:String,email:String,name:String,classDesc:String,description:String)
+	private val jordan = PersonDescription("jkIcon.jpg","jkoeller@trinity.edu","Jordan Koeller","Physics & Computer Science, class of 2019","From time to time, I like to do science.")
+
+	def peopleList:List[PersonDescription] = jordan :: Nil
 
 }
 

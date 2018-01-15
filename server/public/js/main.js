@@ -30,7 +30,8 @@
 		      panel.style.maxHeight = null;
 		    } else {
 		      panel.style.maxHeight = panel.scrollHeight + "px";
-
+		      var offset = $(this).offset().top;
+   			  window.scrollTo(0,offset);
 		    } 
 		  });
 		}

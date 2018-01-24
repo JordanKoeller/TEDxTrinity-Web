@@ -43,7 +43,7 @@ class Test @Inject() (
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
       val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
-      val prettyBody = viewStyles.html.style4(Article("",body) ::Nil)
+      val prettyBody = viewStyles.html.style1(Article("",body) ::Nil)
       viewStyles.html.accordion(prettyTitle,prettyBody).toString()
     }
     new Html(articleList.mkString(""))

@@ -3240,3 +3240,8 @@
 	transition: opacity 0.5s ease-in, max-height 0.5s ease-out;
 	/*transition: max-height 0.5s ease-out;*/
 }
+
+a .menubar {
+	margin-top: auto;
+	margin-bottom: auto;
+}

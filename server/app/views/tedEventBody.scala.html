@@ -1,20 +1,21 @@
 @import models.TEDEvent
 @(model:TEDEvent)
-		<!--
-		Note: The date should be formatted exactly as it's shown below. In particular, the
-		"least significant" characters of the month should be encapsulated in a <span>
-						element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
-						Oh, and if you don't need a date for a particular page or post you can simply delete
-						the entire "date" element.
-			-->
-			<span class="date">
-				<span class="month">@model.monthPrefix</span>
-				<span class="day">@model.date.getDayOfMonth</span>
-				<span class="year">, @model.date.getYear</span>
-			</span>
-			<ul class="stats">
-				<li>@model.time</li>
-			</ul>
+<!--
+Note: The date should be formatted exactly as it's shown below. In particular, the
+"least significant" characters of the month should be encapsulated in a <span>
+							element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+							Oh, and if you don't need a date for a particular page or post you can simply delete
+							the entire "date" element.
+	-->
+	@*
+	<span class="date">
+		<span class="month">@(model.monthPrefix+model.monthSuffix)</span>
+		<span class="day">@model.date.getDayOfMonth,</span>
+		<span class="year"> @model.date.getYear</span>
+	</span>
+	<ul class="stats">
+		<li>@model.time</li>
+	</ul>
 	@if(model.imgURL.isDefined) {
 	<a href="#" class="image featured"><img src="@model.imgURL.get" alt="" /></a>
 	}
@@ -27,3 +28,57 @@
 	<p>
 		@model.description
 	</p>
+	*@
+	@*
+	<h2>
+	<strong>
+	@model.time
+	</strong>
+	</h2>
+	<h2>
+	<strong>
+	@(model.monthPrefix+model.monthSuffix) @model.date.getDayOfMonth, @model.date.getYear
+	</strong>
+	</h2>
+	<h2>
+	<strong>
+	Where: @model.venue
+	</strong>
+	</h2>
+
+*@
+
+	<section class="wrapper style4 container">
+		<div class="row 150%">
+			<div class="4u 12u(narrower)">
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<section>
+						<header>
+							<h3>Magna Feugiat</h3>
+						</header>
+						<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit..</p>
+						<footer>
+							<ul class="buttons">
+								<li><a href="#" class="button small">Learn More</a></li>
+							</ul>
+						</footer>
+					</section>
+				</div>
+			</div>
+			<div class="8u 12u(narrower) important(narrower)">
+				<!-- Content -->
+				<div class="content">
+					<section>
+						<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+						<header>
+							<h3>Dolore Amet Consequat</h3>
+						</header>
+						<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum massa. Morbi eu faucibus massa. Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
+						<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
+						<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus, non hendrerit ipsum arcu tristique est.</p>
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>

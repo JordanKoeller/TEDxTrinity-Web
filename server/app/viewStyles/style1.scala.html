@@ -5,6 +5,9 @@
 		@for(article <- articles) {
 		<div class="4u 12u(narrower)">
 			<section>
+				@if(article.image.isDefined) {
+				<img src="@routes.Assets.versioned("images/" + article.image.get)" alt=""/>
+				}
 				<header>
 					<h2>@article.title</h2>
 					@if(article.subtitle.isDefined) {

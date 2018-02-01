@@ -43,8 +43,7 @@ class Test @Inject() (
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
       val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
-      val prettyBody = viewStyles.html.style1(Article("",body) ::Nil)
-      viewStyles.html.accordion(prettyTitle,prettyBody).toString()
+      viewStyles.html.accordion(prettyTitle,body).toString()
     }
     new Html(articleList.mkString(""))
   }
@@ -61,7 +60,12 @@ class Test @Inject() (
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
     val event2 = TEDEvent("Title2","subtitle2",22,4,2022,4,22,"Speaker2","venue2",420,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-    event2 :: event :: Nil
+    val event3 = TEDEvent("This is a TED Event", "Subtitle goes here", 18, 2, 2018, 4, 22,
+                          "Speakers include: Alice, Bob, Charlie, Daniel, Eric, Frances, Gary, Hannah, Indigo",
+                          "Ruth Taylor Recital Hall",
+                          420,
+                          "A descriptive Lorum Ipsum: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+    event3:: event2 :: event :: Nil
   }
 
   

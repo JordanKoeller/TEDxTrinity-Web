@@ -7,10 +7,4 @@ object DatabaseCodeGen extends App {
           "/home/jkoeller/Documents/Trinity/TEDxTrinity/website/play-scalajs/server/app/models",
           "models")
       )
-//      Array(profile, jdbcDriver, url, outputFolder, pkg)
-//    Array("slick.driver.MySQLDriver", "com.mysql.jdbc.Driver", 
-//        "jdbc:mysql://localhost/datadrawing?user=datadrawing&password=NextPointerGoesHere", 
-//        "/users/maguilar/Local/HTML-Documents/WebApps/workspace_play_project/webappsproject2/playproject/server/app", 
-      //"models", "datadrawing", "NextPointerGoesHere")
-//  )
 }

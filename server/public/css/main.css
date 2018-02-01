@@ -229,6 +229,7 @@
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
+		color: #646768;
 	}
 
 	.row:after, .row:before {
@@ -1593,7 +1594,7 @@
 		}
 
 	strong, b {
-		font-weight: 400;
+		font-weight: 800;
 	}
 
 	p, ul, ol, dl, table, blockquote {

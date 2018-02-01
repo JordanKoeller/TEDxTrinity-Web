@@ -1,51 +1,5 @@
 @import util.Article
 @(articles:List[Article],icon:Option[Html] = None)
-@if(articles.length == 1) {
-<section class="wrapper style1 container special">
-	<div class="row">
-		<div class="4u 12u(narrower)">
-			<section>
-				<header>
-				</header>
-				<p></p>
-			</section>
-		</div>
-	</div>
-</section>
-<section class="wrapper style1 container special">
-	<div class="row">
-		@for(article <- articles) {
-		<div class="4u 12u(narrower)">
-			<section>
-			@if(article.image.isDefined) {
-			<img src="@routes.Assets.versioned("images/" + article.image.get)" alt=""/>
-			}
-				
-				<header>
-					<h2>@article.title</h2>
-					@if(article.subtitle.isDefined) {
-					<h3>@article.subtitle.get</h3>
-					}
-				</header>
-				<p>@article.body</p>
-			</section>
-		</div>
-		}
-	</div>
-</section>
-<section class="wrapper style1 container special">
-	<div class="row">
-		<div class="4u 12u(narrower)">
-			<section>
-				<header>
-				</header>
-				<p></p>
-			</section>
-		</div>
-	</div>
-</section>
-}
-@if(articles.length != 1) {
 <section class="wrapper style1 container special">
 	<div class="row">
 		@for(article <- articles) {
@@ -63,4 +17,3 @@
 		}
 	</div>
 </section>
-}

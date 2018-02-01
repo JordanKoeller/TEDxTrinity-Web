@@ -47,8 +47,8 @@ class Application @Inject() (
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
       val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
-      val prettyBody = viewStyles.html.style4(Article("",body,image = article.imgURL))
-      viewStyles.html.accordion(prettyTitle,prettyBody).toString()
+      // val prettyBody = viewStyles.html.style4(Article("",body,image = article.imgURL))
+      viewStyles.html.accordion(prettyTitle,body).toString()
     }
     new Html(articleList.mkString(""))
   }

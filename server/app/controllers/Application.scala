@@ -88,6 +88,8 @@ class Application @Inject() (
 
   def postEvent = Action {request =>
     println("Received Request")
+    println(request.body.asJson)
+    println("Trying to process")
     val event = request.body.asJson.map {json => 
       val title = (json \ "title").as[String]
       val subtitle = (json \ "subtitle").as[String]

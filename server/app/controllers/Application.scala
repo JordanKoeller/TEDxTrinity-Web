@@ -24,6 +24,8 @@ import scala.concurrent.duration.Duration
 
 //import play.twirl.api.Html
 import util._
+import play.api.data.Forms._
+import play.api.data._
 
 @Singleton
 class Application @Inject() (
@@ -31,6 +33,18 @@ class Application @Inject() (
   cc: ControllerComponents)(implicit ec: ExecutionContext)
   extends AbstractController(cc) with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
+  
+    val eventForm = Form(
+    mapping(
+      "title" -> text,
+      "subtitle" -> text,
+      "speaker" -> text,
+      "description" -> text,
+      "venue" -> text,
+      "date" -> text,
+      "time" -> text,
+      "numSeats" -> text,
+      "mediaLink" -> text)(TEDEvent.apply)(TEDEvent.unapply))
   
   updateModel()
 
@@ -83,19 +97,24 @@ class Application @Inject() (
     val htmlList = peopleArticles.map(i => viewStyles.html.style1(i))
     Ok(views.html.main("Our Team",htmlList.mkString(",")))
   }
+
+  def postEvent = Action {implicit request =>
+    eventForm.bindFromRequest().fold(
+        badForm => {
+          null
+        },
+        goodForm => {
+          addEvent(goodForm)
+          Ok
+        }
+    )
+  }
   
   
   
   def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
     if (auth == "fi2933fi8as9lss3982jvb398skil") {
-      val split = date.split("-")
-      val day = split(2).toInt
-      val month = split(1).toInt
-      val yr = split(0).toInt
-      val timeSplit = time.split(":")
-      val hr = timeSplit(0).toInt
-      val min = timeSplit(1).toInt
-      val event = TEDEvent(title, subtitle, day, month, yr, hr, min, speaker, venue, seats.toInt, desc, link)
+      val event = TEDEvent(title, subtitle,speaker,desc,venue,date,time,seats,link)
       addEvent(event)
       Ok
     } else {

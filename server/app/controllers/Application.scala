@@ -34,18 +34,6 @@ class Application @Inject() (
   extends AbstractController(cc) with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
   
-    val eventForm = Form(
-    mapping(
-      "title" -> text,
-      "subtitle" -> text,
-      "speaker" -> text,
-      "description" -> text,
-      "venue" -> text,
-      "date" -> text,
-      "time" -> text,
-      "numSeats" -> text,
-      "mediaLink" -> text)(TEDEvent.apply)(TEDEvent.unapply))
-  
   updateModel()
 
   def index = Action { 
@@ -98,19 +86,45 @@ class Application @Inject() (
     Ok(views.html.main("Our Team",htmlList.mkString(",")))
   }
 
-  def postEvent = Action {implicit request =>
-    eventForm.bindFromRequest().fold(
-        badForm => {
-          null
-        },
-        goodForm => {
-          addEvent(goodForm)
-          Ok
-        }
-    )
+  def postEvent = Action {request =>
+    request.body.asJson.map {json => 
+      val title = (json \ "title").as[String]
+      val subtitle = (json \ "subtitle").as[String]
+      val speaker = (json \ "speaker").as[String]
+      val description = (json \ "description").as[String]
+      val venue = (json \ "venue").as[String]
+      val date = (json \ "date").as[String]
+      val time = (json \ "time").as[String]
+      val numSeats = (json \ "numSeats").as[String]
+      val mediaLink = (json \ "mediaLink").as[String]
+      val event = TEDEvent(title,subtitle,speaker,description,venue,date,time,numSeats,mediaLink)
+      addEvent(event)
+    }
+    Ok
+//    eventForm.bindFromRequest().fold(
+//        badForm => {
+//          null
+//        },
+//        goodForm => {
+//          addEvent(goodForm)
+//          Ok
+//        }
+//    )
   }
   
   
+  val eventForm = Form(
+		  mapping(
+				  "title" -> text,
+				  "subtitle" -> text,
+				  "speaker" -> text,
+				  "description" -> text,
+				  "venue" -> text,
+				  "date" -> text,
+				  "time" -> text,
+				  "numSeats" -> text,
+				  "mediaLink" -> text)(TEDEvent.apply)(TEDEvent.unapply))
+		  
   
   def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
     if (auth == "fi2933fi8as9lss3982jvb398skil") {

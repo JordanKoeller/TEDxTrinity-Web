@@ -87,7 +87,8 @@ class Application @Inject() (
   }
 
   def postEvent = Action {request =>
-    request.body.asJson.map {json => 
+    println("Received Request")
+    val event = request.body.asJson.map {json => 
       val title = (json \ "title").as[String]
       val subtitle = (json \ "subtitle").as[String]
       val speaker = (json \ "speaker").as[String]
@@ -98,8 +99,11 @@ class Application @Inject() (
       val numSeats = (json \ "numSeats").as[String]
       val mediaLink = (json \ "mediaLink").as[String]
       val event = TEDEvent(title,subtitle,speaker,description,venue,date,time,numSeats,mediaLink)
-      addEvent(event)
+      event
     }
+    println("About to add")
+    addEvent(event.get)
+    println("Successfully added")
     Ok
 //    eventForm.bindFromRequest().fold(
 //        badForm => {

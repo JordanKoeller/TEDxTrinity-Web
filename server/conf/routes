@@ -8,7 +8,6 @@ GET        /Events                       controllers.Application.index
 GET        /AboutTED                     controllers.Application.aboutTED
 GET        /Sponsors                     controllers.Application.sponsors
 GET        /Contact						 controllers.Application.contact
-GET       /fie93krubvla92s94dkwjf9dk/:auth/:title/:subtitle/:speaker/:desc/:venue/:date/:time/:seats/:link             controllers.Application.submitEventForm(auth:String,title:String,subtitle:String,speaker:String,desc:String,venue:String,date:String,time:String,seats:String,link:String)
 POST       /submitEventForm    controllers.Application.postEvent
 POST		/TestSubmission		controllers.Test.postEvent
 

@@ -87,6 +87,8 @@ class Application @Inject() (
   }
 
   def postEvent = Action {request =>
+    try {
+      
     println("Received Request")
     println(request.body.asJson)
     println("Trying to process")
@@ -109,6 +111,14 @@ class Application @Inject() (
     addEvent(eventGotten)
     println("Successfully added")
     Ok
+    }
+    catch {
+      case e:Throwable => {
+        println("Failed to post correctly")
+        println("Error Message: " + e.toString())
+        null
+      }
+    }
 //    eventForm.bindFromRequest().fold(
 //        badForm => {
 //          null
@@ -133,16 +143,6 @@ class Application @Inject() (
 				  "numSeats" -> text,
 				  "mediaLink" -> text)(TEDEvent.apply)(TEDEvent.unapply))
 		  
-  
-  def submitEventForm(auth: String, title: String, subtitle: String, speaker: String, desc: String, venue: String, date: String, time: String, seats: String, link: String) = Action {
-    if (auth == "fi2933fi8as9lss3982jvb398skil") {
-      val event = TEDEvent(title, subtitle,speaker,desc,venue,date,time,seats,link)
-      addEvent(event)
-      Ok
-    } else {
-      Ok
-    }
-  }
 
   private def addEvent(event: TEDEvent) = {
     println("Made it into the event")

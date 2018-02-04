@@ -31,6 +31,8 @@ class Test @Inject() (
   cc: ControllerComponents)(implicit ec: ExecutionContext)
   extends AbstractController(cc) with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
+  
+  var madeEvents:List[TEDEvent] = Nil
 
   def index = Action {
     val events = generateEvents
@@ -65,9 +67,43 @@ class Test @Inject() (
                           "Ruth Taylor Recital Hall",
                           420,
                           "A descriptive Lorum Ipsum: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-    event3:: event2 :: event :: Nil
+    event3:: event2 :: event :: madeEvents
   }
-
+  def postEvent = Action {request =>
+    println("Received Request")
+    println(request.body.asJson)
+    println("Trying to process")
+    val event = request.body.asJson.map {json => 
+      val title = (json \ "title").as[String]
+      val subtitle = (json \ "subtitle").as[String]
+      val speaker = (json \ "speaker").as[String]
+      val description = (json \ "description").as[String]
+      val venue = (json \ "venue").as[String]
+      val date = (json \ "date").as[String]
+      val time = (json \ "time").as[String]
+      val numSeats = (json \ "numSeats").as[String]
+      val mediaLink = (json \ "mediaLink").as[String]
+      val event = TEDEvent(title,subtitle,speaker,description,venue,date,time,numSeats,mediaLink)
+      event
+    }
+    println("About to add")
+    addEvent(event.get)
+    println("Successfully added")
+    Ok
+//    eventForm.bindFromRequest().fold(
+//        badForm => {
+//          null
+//        },
+//        goodForm => {
+//          addEvent(goodForm)
+//          Ok
+//        }
+//    )
+  }
+  
+  def addEvent(event:TEDEvent) = {
+    madeEvents = event :: madeEvents
+    }
   
   private def clean(str:String):String = {
     val specials = Array(("%2F" -> "/"),("%3A" -> ":"),( "%2E" -> "."))

@@ -104,7 +104,9 @@ class Application @Inject() (
       event
     }
     println("About to add")
-    addEvent(event.get)
+    val eventGotten = event.get
+    println("Called get")
+    addEvent(eventGotten)
     println("Successfully added")
     Ok
 //    eventForm.bindFromRequest().fold(
@@ -143,6 +145,7 @@ class Application @Inject() (
   }
 
   private def addEvent(event: TEDEvent) = {
+    println("Made it into the event")
     val date = event.date.atZone(ZoneId.of("America/Chicago"))
     val epochsec = date.getLong(ChronoField.INSTANT_SECONDS) * 1000
     val sqldate = new Date(epochsec)
@@ -152,11 +155,11 @@ class Application @Inject() (
     val finalQuery = eventID.map { id =>
       val eventDesc = EventDescriptionsRow(
         id.toInt,
-        clean(event.title),
-        if (event.subtitle.isDefined) Some(clean(event.subtitle.get)) else None,
-        clean(event.speaker),
-        clean(event.description),
-        clean(event.venue),
+        event.title,
+        if (event.subtitle.isDefined) Some(event.subtitle.get) else None,
+        event.speaker,
+        event.description,
+        event.venue,
         sqldate,
         sqltime,
         event.maxSeats,

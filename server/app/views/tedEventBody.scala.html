@@ -16,9 +16,6 @@ Note: The date should be formatted exactly as it's shown below. In particular, t
 	<ul class="stats">
 		<li>@model.time</li>
 	</ul>
-	@if(model.imgURL.isDefined) {
-	<a href="#" class="image featured"><img src="@model.imgURL.get" alt="" /></a>
-	}
 	<p>
 		<strong>Speaker: </strong> @model.speaker
 	</p>
@@ -83,7 +80,9 @@ Note: The date should be formatted exactly as it's shown below. In particular, t
 				<!-- Content -->
 				<div class="content">
 					<section>
-						<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+						@if(model.imgURL.isDefined) {
+						<a href="#" class="image featured"><img src="@model.imgURL.get" alt="" /></a>
+						}
 						<header>
 							<h3>@model.title</h3>
 						</header>

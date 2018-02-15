@@ -165,6 +165,7 @@ class Application @Inject() (
         0,
         event.imgURL)
     val finalQuery =  db.run(EventDescriptions += eventDesc)
+    println("Just passed db.run")
     finalQuery.map{i =>
       println("Query Update Returned " + i)
       updateModel()

@@ -151,12 +151,11 @@ class Application @Inject() (
     val sqldate = new Date(epochsec)
     val sqltime = new Time(epochsec)
     val eventRow = EventsRow(0, sqldate, sqltime)
-    val eventID = db.run(Events returning Events.map(_.eventId) += eventRow)
-    val finalQuery = eventID.map { id =>
+    val id = 0
       val eventDesc = EventDescriptionsRow(
-        id.toInt,
+        id,
         event.title,
-        if (event.subtitle.isDefined) Some(event.subtitle.get) else None,
+        event.subtitle,
         event.speaker,
         event.description,
         event.venue,
@@ -164,10 +163,10 @@ class Application @Inject() (
         sqltime,
         event.maxSeats,
         0,
-        if (event.imgURL.isDefined) Some(clean(event.imgURL.get)) else None)
-      db.run(EventDescriptions += eventDesc)
-    }
+        event.imgURL)
+    val finalQuery =  db.run(EventDescriptions += eventDesc)
     finalQuery.map{i =>
+      println("Query Update Returned " + i)
       updateModel()
   }
 }

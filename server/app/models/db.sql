@@ -14,15 +14,15 @@ CREATE TABLE events (
 
 CREATE TABLE event_descriptions (
 	event_id int NOT NULL,
-	title varchar(255) NOT NULL,
-	subtitle varchar(255),
-	speaker varchar(255) NOT NULL,
-	description varchar(255) NOT NULL,
-	venue varchar(255) NOT NULL,
+	title varchar(1000) NOT NULL,
+	subtitle varchar(1000),
+	speaker varchar(1000) NOT NULL,
+	description text NOT NULL,
+	venue varchar(1000) NOT NULL,
 	event_date date NOT NULL,
 	event_time time NOT NULL,
 	max_seats int NOT NULL,
 	taken_seats int NOT NULL,
-	media_link varchar(255)
+	media_link varchar(1000)
 );
 

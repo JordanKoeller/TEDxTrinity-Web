@@ -85,11 +85,12 @@
 					'</div>'
 				)
 					.appendTo($body);
-
+				let img = $('<li>' + '<a href="/">' + '<img hidden="" class="logoInSidebar" src="/versionedAssets/images/TEDxTrinityLogo.png" style="width: 180px; height: 65px; display: inline;">' + '</a>' + '</li>')
 			// Navigation Panel.
 				$(
 					'<div id="navPanel">' +
 						'<nav>' +
+							img.css("width", 180).css("height",65).show().html() +
 							$('#nav').navList() +
 						'</nav>' +
 					'</div>'

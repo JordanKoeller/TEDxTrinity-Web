@@ -48,8 +48,7 @@ class Application @Inject() (
     val articleList = events.map{article =>
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
-      val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
-      // val prettyBody = viewStyles.html.style4(Article("",body,image = article.imgURL))
+      val prettyTitle = title
       viewStyles.html.accordion(prettyTitle,body).toString()
     }
     new Html(articleList.mkString(""))
@@ -119,15 +118,6 @@ class Application @Inject() (
         null
       }
     }
-//    eventForm.bindFromRequest().fold(
-//        badForm => {
-//          null
-//        },
-//        goodForm => {
-//          addEvent(goodForm)
-//          Ok
-//        }
-//    )
   }
   
   

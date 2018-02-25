@@ -42,17 +42,27 @@ class Application @Inject() (
     Ok(views.html.main("Upcoming Events", content))
   }
 
-  private def formatEvents(events:List[TEDEvent]):Html = {
+//  private def formatEvents(events:List[TEDEvent]):Html = {
+//    val articleList = events.map{article =>
+//      val title = views.html.tedTitle(article)
+//      val body = views.html.tedEventBody(article)
+//      val prettyTitle = title
+//      viewStyles.html.accordion(prettyTitle,body).toString()
+//    }
+//    new Html(articleList.mkString(""))
+//  }
+
+  def formatEvents(events:List[TEDEvent]):Html = {
     val articleList = events.map{article =>
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
-      val prettyTitle = title
+      val leftPane = Article(article.title,article.subtitle.get)
+      val rightPane = Article("","",image=article.imgURL)
+      val prettyTitle = viewStyles.html.splitStyle(leftPane,rightPane)//viewStyles.html.style1(Article(title,"") :: Nil)
       viewStyles.html.accordion(prettyTitle,body).toString()
     }
     new Html(articleList.mkString(""))
   }
-
-
   def sponsors = Action {
     val calendar = views.html.calendar()
     val sponsors = views.html.sponsors()

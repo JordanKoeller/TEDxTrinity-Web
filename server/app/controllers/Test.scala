@@ -44,7 +44,9 @@ class Test @Inject() (
     val articleList = events.map{article =>
       val title = views.html.tedTitle(article)
       val body = views.html.tedEventBody(article)
-      val prettyTitle = title//viewStyles.html.style1(Article(title,"") :: Nil)
+      val leftPane = Article(article.title,article.subtitle.get)
+      val rightPane = Article("","",image=article.imgURL)
+      val prettyTitle = viewStyles.html.splitStyle(leftPane,rightPane)//viewStyles.html.style1(Article(title,"") :: Nil)
       viewStyles.html.accordion(prettyTitle,body).toString()
     }
     new Html(articleList.mkString(""))

@@ -229,8 +229,12 @@
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
-		color: #646768;
+		/*color: #646768; */
 	}
+	
+	.style4 > * {
+	 color:#646768;
+	 }
 
 	.row:after, .row:before {
 		content: '';
@@ -1552,12 +1556,12 @@
 /* Basic */
 
 	body {
-		background-attachment: scroll, scroll, scroll, fixed;
+		background-attachment: fixed;
 		background-color: #7a6c77;
-		background-image: url("images/dark-bl.svg"), url("images/dark-br.svg"), url("images/overlay.png"), url("images/banner.jpg");
-		background-position: bottom left, bottom right, top left, top center;
-		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
-		background-size: 25em, 25em, auto, cover;	}
+		background-image:  url("images/low_contrast_linen.png");
+		background-position: bottom left;
+		background-repeat: repeat;
+		background-size: 25em;	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 			-moz-animation: none !important;
@@ -1653,7 +1657,7 @@
 
 	section.special, article.special {
 		text-align: center;
-		color: #fff;
+		color: #e6e6e6;
 
 	}
 
@@ -2198,6 +2202,7 @@
 	#header {
 		background: #eee;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.075);
+		opacity: 0.90;
 		color: inherit;
 		cursor: default;
 		font-size: 0.8em;
@@ -2727,6 +2732,10 @@
 			header.major {
 				padding-bottom: 0.25em;
 			}
+			
+			#whitetext {
+			color: #fff;
+			}
 
 			header.special {
 				margin-bottom: 4em;
@@ -2745,6 +2754,11 @@
 
 			section {
 				margin: 1em 0 1em 0;
+			}
+			
+			section.special, article.special {
+			 text-align: center;
+			 color: #fff;
 			}
 
 				section:first-child {

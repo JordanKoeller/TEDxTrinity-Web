@@ -12,6 +12,17 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
     "com.typesafe.slick" %% "slick-codegen" % "3.2.1",
     "org.postgresql" % "postgresql" % "9.4-1201-jdbc41",
 ),
+/*// Dependencies for silhouette
+  libraryDependencies ++= Seq(
+  		"com.mohiva" %% "play-silhouette-password-bcrypt" % "5.0.3",
+		"com.mohiva" %% "play-silhouette-crypto-jca" % "5.0.3",
+		"com.mohiva" %% "play-silhouette-persistence" % "5.0.3",
+"com.mohiva" %% "play-silhouette-testkit" % "5.0.3" % "test",
+	"net.codingwell" %% "scala-guice" % "4.1.1",
+	"com.iheart" %% "ficus" % "1.4.1"
+),
+*/
+
   // Compile the project before generating Eclipse files, so that generated .scala or .class files for views and routes are present
   EclipseKeys.preTasks := Seq(compile in Compile)
 ).enablePlugins(PlayScala).

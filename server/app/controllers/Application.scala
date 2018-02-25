@@ -37,8 +37,6 @@ class Application @Inject() (
   updateModel()
 
   def index = Action { 
-    val calendar = views.html.calendar()
-    val sidebar = getSidebar(0)
     val events = TEDEventList.list
     val content = formatEvents(events)
     Ok(views.html.main("Upcoming Events", content))
@@ -55,15 +53,8 @@ class Application @Inject() (
   }
 
 
-  private def getSidebar(ind: Int): Html = {
-    val cal = views.html.calendar()
-    val navOpts = Array(("/Events", "Upcoming Events"), ("/AboutTED", "About TED"), ("/Sponsors", "Sponsors"), ("/Contact", "Contact Us"))
-    views.html.sidebar(navOpts, ind, cal)
-  }
-
   def sponsors = Action {
     val calendar = views.html.calendar()
-    val sidebar = getSidebar(2)
     val sponsors = views.html.sponsors()
     val sponsorsIcon = "TULogo.png"
     val prettySponsors = viewStyles.html.style1(Article("<a href=\"https://new.trinity.edu\">Trinity University</a>","",image=Some(sponsorsIcon)))
@@ -73,7 +64,6 @@ class Application @Inject() (
   def aboutTED = Action {
     // val aboutTed = views.html.aboutTedContent()
     val aboutTed = viewStyles.html.style4(util.aboutTedText.content)
-    val sidebar = getSidebar(1)
     Ok(views.html.main("About TEDx", aboutTed))
   }
 

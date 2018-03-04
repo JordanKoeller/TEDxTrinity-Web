@@ -8,8 +8,8 @@ GET        /Events                       controllers.Application.index
 GET        /AboutTED                     controllers.Application.aboutTED
 GET        /Sponsors                     controllers.Application.sponsors
 GET        /Contact						 controllers.Application.contact
-POST       /submitEventForm    controllers.Application.postEvent
-POST		/TestSubmission		controllers.Test.postEvent
+POST       /submitEventForm    			 controllers.Application.postEvent
+POST		/TestSubmission				 controllers.Test.postEvent
 
 GET        /Test                         controllers.Test.index
 # Prefix must match `play.assets.urlPrefix`
